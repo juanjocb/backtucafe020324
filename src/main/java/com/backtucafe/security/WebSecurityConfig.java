@@ -40,26 +40,24 @@ public class WebSecurityConfig {
         return http
 //               .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests((auth) -> auth.requestMatchers("/", "/lugares", "/acerca", "/opiniones", "/reserva", "/tuCafe/v1/business/register", "/tuCafe/v1/client/register", "/tuCafe/v1/client/login", "/tuCafe/v1/business/login", "/tuCafe/v1/client/{id_client}", "/tuCafe/v1/client/listBusiness", "/tuCafe/v1/business/{id_business}", "/tuCafe/v1/reservation/creation_reservation" ).permitAll()
-                .anyRequest()
-                .authenticated())
+                .authorizeHttpRequests((auth) -> auth
+                        .requestMatchers("/", "/lugares", "/acerca", "/opiniones", "/reserva", "/tuCafe/v1/business/register", "/tuCafe/v1/client/register", "/tuCafe/v1/client/login", "/tuCafe/v1/business/login", "/tuCafe/v1/client/{id_client}", "/tuCafe/v1/client/listBusiness", "/tuCafe/v1/business/{id_business}", "/tuCafe/v1/reservation/creation_reservation").permitAll()
+                        .anyRequest().authenticated())
                 .sessionManagement(sessionM -> sessionM.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-//                .addFilterBefore(clientJWTAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-//                .addFilterBefore(businessJWTAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOrigin("http://localhost:5173");
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
-        configuration.setAllowCredentials(false);
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
+//    @Bean
+//    CorsConfigurationSource corsConfigurationSource() {
+//        CorsConfiguration configuration = new CorsConfiguration();
+//        configuration.addAllowedOrigin("http://localhost:5173");
+//        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
+//        configuration.setAllowCredentials(false);
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", configuration);
+//        return source;
+//    }
 
 
 
