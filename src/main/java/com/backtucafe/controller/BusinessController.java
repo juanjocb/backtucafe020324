@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("tuCafe/v1/business")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "https://front-tu-cafe-v3h2.vercel.app/")
 public class BusinessController {
 
     private final BusinessService businessService;

@@ -21,7 +21,7 @@ import java.util.List;
 @RestController
 @RequestMapping("tuCafe/v1/client")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "https://front-tu-cafe-v3h2.vercel.app/")
 public class ClientController {
 
     private final ClientService clientService;
